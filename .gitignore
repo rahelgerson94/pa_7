@@ -7,3 +7,5 @@
 *.dSYM
 game
 */game
+*/*.zip
+*.zip

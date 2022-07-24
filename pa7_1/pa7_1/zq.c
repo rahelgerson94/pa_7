@@ -1020,6 +1020,7 @@ int get_max_line_len(char* path){
             curr_num_char++;
         }
     }
+    if (curr_num_char > max_num_char) max_num_char = curr_num_char;
     fclose(data);
 //    printf(">");
     return max_num_char;
