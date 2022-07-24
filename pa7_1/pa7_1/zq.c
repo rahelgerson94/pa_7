@@ -477,7 +477,7 @@ void delimit(char line[], char delim, char* output[]){
     int start, end;
     
     int delim_locs[num_lines];reset_int_arr(delim_locs, 0, num_lines, -1);
-    get_separation_locs(line, delim, 0, strlen(line), delim_locs);
+    get_separation_locs(line, delim, 0, (int)strlen(line), delim_locs);
 #ifdef db_preproc
     printf("delimit()\n");
     print_int_arr(delim_locs);
@@ -492,7 +492,7 @@ void delimit(char line[], char delim, char* output[]){
     for (int l = 1; l < num_lines; l++){
         if (l == num_lines-1){
             start = delim_locs[l-1]+1;
-            end = strlen(line);
+            end = (int)strlen(line);
         }
         else{
             end = delim_locs[l];
@@ -605,7 +605,7 @@ ZQDecisionTree* ZQ_build_tree(char* file_name){
     
     int num_lines = count_num_lines(file_name, buff_size);
     //int num_objs = num_lines - 2;
-    char temp[buff_size]; //to store first line of file
+    //char temp[buff_size]; //to store first line of file
     
     char* file_data[num_lines];
     for (int i = 0; i < num_lines; i++){
