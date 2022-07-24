@@ -618,7 +618,7 @@ ZQDecisionTree* ZQ_build_tree(char* file_name){
     char* questions = file_data[1];
     int num_levels = count_char(questions, '?');
     
-    char* qs_list[num_objs];
+    char* qs_list[num_levels];//num_objs
     delimit(questions, ',', qs_list);
     ZQDecisionTree* tree = malloc(sizeof(tree));
 #ifdef db_build
