@@ -32,6 +32,12 @@ void play(ZQDecisionTreeNode* cur){
                 printf("I guessed it!");
                 return;
             }
+            else if (ans == 'n'){
+                continue;
+            }
+            else{
+                printf("enter y or n");
+            }
         }
         printf("You got me :)\n");
     } //end base case
@@ -44,6 +50,9 @@ void play(ZQDecisionTreeNode* cur){
             break;
             case 'n':
                 play(cur->no);
+            break;
+            default:
+                printf("enter y or n");
             break;
         }//switch
     }//end recurrence

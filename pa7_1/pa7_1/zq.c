@@ -604,10 +604,15 @@ ZQDecisionTree* ZQ_build_tree(char* file_name){
     //read_(data, indices, file_data, &dummy);
     
     int num_lines = count_num_lines(file_name, buff_size);
-    int num_objs = num_lines - 2;
-    char* file_data[num_lines];
-    read_( file_name, buff_size, file_data);
+    //int num_objs = num_lines - 2;
+    char temp[buff_size]; //to store first line of file
     
+    char* file_data[num_lines];
+    for (int i = 0; i < num_lines; i++){
+        file_data[i] = NULL;
+    }
+    read_( file_name, buff_size, file_data);
+    int num_objs = atoi(file_data[0]);
 #ifdef  db_build
     printf("\nZQ_build_tree()\n"); fflush(stdout);
     for (int i = 0; i < num_lines; i++){
@@ -642,7 +647,9 @@ ZQDecisionTree* ZQ_build_tree(char* file_name){
     
     for (int i = 0; i < num_lines; i++){
         //printf("\t%s\n", *(file_data+ i)); fflush(stdout); //debug
-        free(*(file_data+ i));
+        if (*(file_data + i) != NULL){
+            free(*(file_data+ i));
+        }
     }
     //free(file_data);
     for (int i = 0; i < num_levels; i++){
@@ -705,6 +712,9 @@ void ZQ_populate_tree(ZQDecisionTree* tree, char* file_name){
     int buff_size = 100;
     int num_lines = count_num_lines(file_name, buff_size);
     char* file_data[num_lines];
+    for (int i = 0; i < num_lines; i++){
+        file_data[i] = NULL;
+    }
     read_( file_name, buff_size, file_data);
     int num_objs = atoi(file_data[0]);
     /*
@@ -770,8 +780,11 @@ void ZQ_populate_tree(ZQDecisionTree* tree, char* file_name){
 #ifdef  db_pop
     printf("poulate_tree(): freed answers_temp\n"); fflush(stdout);//debug
 #endif
-    for (int i = 0; i < num_lines; i++)
-        free(*(file_data+ i));
+    for (int i = 0; i < num_lines; i++){
+        if (*(file_data + i) != NULL){
+            free(*(file_data+ i));
+        }
+    }
 #ifdef  db_pop
     printf("poulate_tree(): freed file_data\n"); fflush(stdout);//debug
 #endif
