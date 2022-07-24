@@ -1,0 +1,7 @@
+2
+does it have legs?
+car,0
+dog,1
+
+
+
