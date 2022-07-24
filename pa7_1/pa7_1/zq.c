@@ -400,13 +400,13 @@ void get_separation_locs(char input[], char delim, int startLoc, int endLoc, int
         endLoc = 100;
     }
     int ll = 0;
-    for (int ii = startLoc; ii < endLoc; ii++)
+    for (int ii = startLoc; ii <= endLoc; ii++)
     {
         if (input[ii] == delim || input[ii] == '\n')
         {
             output[ll++] = ii;
         }
-        else if (input[ii] == '\0')
+        else if (input[ii] == '\0' || ii == endLoc)
         {
             output[ll++] = ii;
             break;
